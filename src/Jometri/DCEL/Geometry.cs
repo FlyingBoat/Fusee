@@ -208,24 +208,6 @@ namespace Fusee.Jometri.DCEL
         }
 
         /// <summary>
-        /// Returns all HalfEdges wihtout their twins.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<HalfEdge> GetAllEdges()
-        {
-            List<HalfEdge> edges = new List<HalfEdge>();
-
-            foreach (var he in DictHalfEdges)
-            {
-                if (!edges.Contains(GetHalfEdgeByHandle(he.Value.TwinHalfEdge)))
-                {
-                    edges.Add(he.Value);
-                }
-            }
-            return edges;
-        }
-
-        /// <summary>
         /// Returns all Faces of the Geometry.
         /// </summary>
         /// <returns></returns>
@@ -779,7 +761,7 @@ namespace Fusee.Jometri.DCEL
         /// <param name="q">Handle of Vertex two.</param>
         /// <param name="pos">Position of the new Vertex</param>
         /// <returns>New Vertex Handle.</returns>
-        public int InsertVertex(int p, int q, float3 pos)
+        internal int InsertVertex(int p, int q, float3 pos)
         {
             var adjacentVertices = GetVertexAdjacentVertices(p).ToList();
             for (int i = 0; i < adjacentVertices.Count; i++)
